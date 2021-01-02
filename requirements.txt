@@ -1,0 +1,7 @@
+lml==0.1.0
+lxml==4.6.2
+pyexcel==0.6.6
+pyexcel-ezodf==0.3.4
+pyexcel-io==0.6.4
+pyexcel-ods3==0.6.0
+texttable==1.6.3
