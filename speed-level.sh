@@ -2,7 +2,7 @@ function aom {
     INFILE="${1}"
     CPU="${2}"
     LIMIT=${3}
-    ENC="aom"
+    ENC="${ENC_aom:-aom}"
     LEVELS="0 8"
     NAME=`basename ${1} | cut -d . -f 1`
     OUTFILE="~/Encoded/${NAME}_${ENC}_{ss}_l${3}.ivf"
@@ -19,7 +19,7 @@ function svt {
     INFILE="${1}"
     CPU="${2}"
     LIMIT=${3}
-    ENC="svt_av1"
+    ENC="${ENC_svt:-svt_av1}"
     LEVELS="0 8"
     NAME=`basename ${1} | cut -d . -f 1`
     OUTFILE="~/Encoded/${NAME}_${ENC}_{ss}_l${3}.ivf"
@@ -36,7 +36,7 @@ function rav1e {
     INFILE="${1}"
     CPU="${2}"
     LIMIT=${3}
-    ENC="rav1e"
+    ENC="${ENC_rav1e:-rav1e}"
     LEVELS="0 10"
     NAME=`basename ${1} | cut -d . -f 1`
     OUTFILE="~/Encoded/${NAME}_${ENC}_{ss}_l${3}.ivf"
@@ -48,11 +48,3 @@ function rav1e {
 
     hyperfine -r 2 -P ss $LEVELS "$RUN" --export-csv ${OUT}.csv --export-markdown ${OUT}.md
 }
-
-mkdir -p ~/Encoded
-
-for enc in aom svt rav1e; do
-    $enc ${1} ${2} ${3}
-done
-
-python merge_all.py ${1} ${2} ${3}
