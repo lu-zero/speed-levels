@@ -1,5 +1,5 @@
 . speed-level.sh
 
-for enc in aom svt rav1e; do
+for enc in run_aom run_rav1e run_svt; do
     $enc ${1} ${2} ${3}
 done
