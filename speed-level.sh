@@ -44,7 +44,9 @@ function rav1e {
 
     BIN=${BIN_rav1e:-rav1e}
 
-    RUN="${NUMACMD} ${BIN} --threads 16 --tiles 16 -l ${LIMIT} -s {ss} -o ${OUTFILE} ${INFILE} -y"
+    $BIN --version | grep 0.3 -q || OVERRIDE=-y
+
+    RUN="${NUMACMD} ${BIN} --threads 16 --tiles 16 -l ${LIMIT} -s {ss} -o ${OUTFILE} ${INFILE} ${OVERRIDE}"
 
     hyperfine -r 2 -P ss $LEVELS "$RUN" --export-csv ${OUT}.csv --export-markdown ${OUT}.md
 }
