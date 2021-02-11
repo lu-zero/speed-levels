@@ -1,0 +1,5 @@
+*.y4m
+env
+*.csv
+*.md
+*.ods
